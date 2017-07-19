@@ -9,9 +9,9 @@ import browserdriver as browser
 # 
 # Brief: scales the wait time in the wait() method
 #
-# NOTE: if something goes wrong and if you have all of the packages, 
-# then try changing scalar to 2 or 3 (or more, depending on your machine)
-scalar = 2
+# NOTE: if something goes wrong and if all the required packages are available,
+# then try changing scalar to 2 or 3 (or higher, depending on your machine)
+scalar = 1
 
 verbose = True
 
@@ -28,7 +28,9 @@ def note(msg):
 
 
 def wait(sec=0.25, scalar=scalar):
-	note('waiting {} seconds'.format(sec*scalar))
+	unit = 'seconds'
+	if scalar == 1: unit = 'second'
+	note('waiting {} {}'.format(sec*scalar, unit))
 	time.sleep(sec*scalar)
 
 
@@ -46,7 +48,7 @@ def flatironRig_formBypass():
 
 def copyUrlToClipboard(a, b):
 	terminal.openNewSession()
-	wait(2.5)
+	wait(.5)
 	nano.open()
 	terminal.paste()
 	if not b:
@@ -55,16 +57,15 @@ def copyUrlToClipboard(a, b):
 		nano.highlight(b, a)
 	nano.removeAllNonSelected()
 	# temporarily save contents in a file
-	nano.saveAndExit('temp9999.txt')
-	terminal.copyFileContentsToClipboard('temp9999.txt')
-	terminal.removeFile('temp9999.txt')
-	# Nano End
+	nano.saveAndExit('temp369.txt')
+	terminal.copyFileContentsToClipboard('temp369.txt')
+	terminal.removeFile('temp369.txt')
 	terminal.close()
 
 
 def getUrlFromSourcePage(keyword1, keyword2=''):
 	browser.invokeSourcePage()
-	wait(.35)
+	wait(.5)
 	browser.findTargetKeyword(keyword1)
 	browser.copyLine()
 	copyUrlToClipboard(keyword1, keyword2)
@@ -81,4 +82,3 @@ def getPdfFromFlatiron():
 	# load PDF
 	getUrlFromSourcePage('.pdf', 'http://')
 	browser.loadAddressInBrowser()
-
