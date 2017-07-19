@@ -65,5 +65,48 @@ def pasteAndEnter():
 
 def loadAddressInBrowser():
 	startNewPrivateTab()
-	# load url
 	pasteAndEnter()
+
+
+def tabShiftRight(x=1):
+	'''
+		Shifts to browser tab on the right
+	'''
+	if browserLogging: 
+		print('shifting to the right browser tab {} times'.format(x))
+	for i in range(x):
+		pag.hotkey('ctrl', 'tab')
+
+
+def tabShiftLeft(x=1):
+	'''
+		Shifts to browser tab on the left
+	'''
+	if browserLogging: 
+		print('shifting to the left browser tab {} times'.format(x))
+	for i in range(x):
+		pag.hotkey('ctrl', 'shift', 'tab')
+
+
+def reopenPreviouslyClosedTab():
+	'''
+		Reopens in order of: last closed, first opened
+	'''
+	pag.hotkey('ctrl', 'shift', 't')
+
+
+def closeTab(x=1):
+	'''
+		Closes current browser tab
+	'''
+	if browserLogging: 
+		print('closing {} browser tab(s)'.format(x))
+	for i in range(x):
+		pag.hotkey('ctrl', 'w')
+
+
+def closeBrowser():
+	if browserLogging: 
+		print('closing browser')
+	pag.hotkey('ctrl', 'q')
+
