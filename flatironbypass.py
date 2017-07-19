@@ -11,7 +11,7 @@ import browserdriver as browser
 #
 # NOTE: if something goes wrong and if all the required packages are available,
 # then try changing scalar to 2 or 3 (or higher, depending on your machine)
-scalar = 2
+scalar = 1
 
 verbose = True
 
@@ -48,7 +48,7 @@ def flatironRig_formBypass():
 
 def copyUrlToClipboard(a, b):
 	terminal.openNewSession()
-	wait(2.5)
+	wait(.5)
 	nano.open()
 	terminal.paste()
 	if not b:
@@ -88,6 +88,3 @@ def getPdfFromFlatiron():
 	getUrlFromSourcePage('.pdf', 'http://')
 	browser.loadAddressInBrowser()
 	closeOldTabs(4)
-
- 
-getPdfFromFlatiron()
